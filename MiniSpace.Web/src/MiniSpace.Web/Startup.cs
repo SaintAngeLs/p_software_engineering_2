@@ -65,6 +65,9 @@ namespace MiniSpace.Web
                 services.AddScoped<Radzen.DialogService, Radzen.DialogService>();
                 services.AddScoped<Radzen.NotificationService>(); 
                 
+                services.AddScoped<Lazy<IStudentsService>>(provider =>
+                    new Lazy<IStudentsService>(() => provider.GetRequiredService<IStudentsService>()));
+
                 
                 services.AddScoped<IIdentityService, IdentityService>();
                 services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();

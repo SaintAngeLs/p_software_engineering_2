@@ -74,7 +74,17 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadNotifications(new LoadDataArgs { Skip = 0, Top = pageSize, OrderBy = "createdAt desc" });
+        await IdentityService.InitializeAuthenticationState(); 
+
+        if (IdentityService.IsAuthenticated)
+        {
+            await LoadNotifications(new LoadDataArgs { Skip = 0, Top = pageSize, OrderBy = "createdAt desc" });
+            StateHasChanged();
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/login");
+        }
     }
 
    

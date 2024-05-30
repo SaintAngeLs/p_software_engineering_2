@@ -2,7 +2,8 @@
 @using MiniSpace.Web.Areas.Students
 @inherits LayoutComponentBase
 @inject IIdentityService IdentityService
-@inject IStudentsService StudentsService
+@* @inject IStudentsService StudentsService *@
+@inject Lazy<IStudentsService> LazyStudentsService
 @inject NavigationManager NavigationManager
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime
 @using Blazored.LocalStorage
